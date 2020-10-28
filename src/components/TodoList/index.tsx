@@ -3,6 +3,7 @@ import Todo from "../Todo";
 
 interface Props {
   todos: Todos[];
+  setTodos: (value: Todos[]) => void
 }
 
 interface Todos {
@@ -11,12 +12,12 @@ interface Todos {
   id: number;
 }
 
-function TodoList({ todos }: Props) {
+function TodoList({ todos, setTodos }: Props) {
   return (
     <div className="todo-container">
       <ul className="todo-list">
-        {todos.map((todo) => (
-          <Todo key={todo.id} todo={todo} />
+        {todos.map((todo, index) => (
+          <Todo key={todo.id} keyPosition={index} todo={todo} todos={todos} setTodos={setTodos} />
         ))}
       </ul>
     </div>
